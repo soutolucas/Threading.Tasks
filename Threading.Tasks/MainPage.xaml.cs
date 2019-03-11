@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using Threading.Tasks.Events;
+using Threading.Tasks.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -16,25 +18,25 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace Threading.Tasks
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         #region Attributes
         private string message;
+        private readonly AsyncMethods _methods;
         #endregion
-
+        
         #region Constructor
         public MainPage()
         {
             this.InitializeComponent();
+            _methods = new AsyncMethods();
+            _methods.StateEvent += UpdateStateHandler;
         }
         #endregion
+
+        #region Deadlock case
 
         #region The code causes deadlock
         private void BtnGetValueDeadlock_Click(object sender, RoutedEventArgs e)
@@ -63,7 +65,7 @@ namespace Threading.Tasks
         }
         #endregion
 
-        #region Other methods
+        #region Async methods
         private async Task<string> GetValueAsync()
         {
             await Task.Delay(500);
@@ -89,5 +91,32 @@ namespace Threading.Tasks
             message = "Done";
         }
         #endregion
+
+        #endregion
+
+        #region Others uses for Tasks
+        private async void BtnCallAsyncTask_Click(object sender, RoutedEventArgs e)
+        {
+            _methods.AsyncVoid();
+            await _methods.TaskAsync();
+        }
+
+        private async void BtnStartTask_Click(object sender, RoutedEventArgs e)
+        {
+            txtStartTask.Text = "Start...";
+            await _methods.StartTaskAsync();
+            txtStartTask.Text = "Done!";
+        }
+
+        private async void BtnReturnTask_Click(object sender, RoutedEventArgs e)
+        {
+            txtReturnTask.Text = "Start...";
+            await _methods.ReturnTaskAsync();
+            txtReturnTask.Text = "Done!";
+        }
+
+        private void UpdateStateHandler(object sender, StateEventArgs e) => txtCallAsyncTask.Text = e.State;
+
+        #endregion   
     }
 }

@@ -18,6 +18,9 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <TextBlock FontSize="40" FontStyle="Italic" FontWeight="Medium" HorizontalAlignment="Center" Grid.ColumnSpan="2">System.Threading.Tasks</TextBlock>
@@ -28,5 +31,13 @@
         <TextBox x:Name="txtWithoutDeadlock" Grid.Row="2" Margin="0, 10, 10, 0"/>
         <Button x:Name="btnWithoutDeadlock" Grid.Column="1" Grid.Row="2" Margin="0, 10, 0, 0" Content="Get value" HorizontalAlignment="Right" Width="200" Height="40" Background="Green" Click="BtnGetValue_Click"/>
 
+        <TextBox x:Name="txtCallAsyncTask" Grid.Row="3" Margin="0, 10, 10, 0"/>
+        <Button x:Name="btnCallAsyncTask" Grid.Column="1" Grid.Row="3" Margin="0, 10, 0, 0" Content="Call Async method" HorizontalAlignment="Right" Width="200" Height="40" Click="BtnCallAsyncTask_Click"/>
+        
+        <TextBox x:Name="txtStartTask" Grid.Row="4" Margin="0, 10, 10, 0"/>
+        <Button x:Name="btnStartTask" Grid.Column="1" Grid.Row="4" Margin="0, 10, 0, 0" Content="Start Task" HorizontalAlignment="Right" Width="200" Height="40" Click="BtnStartTask_Click"/>
+
+        <TextBox x:Name="txtReturnTask" Grid.Row="5" Margin="0, 10, 10, 0"/>
+        <Button x:Name="btnReturnTask" Grid.Column="1" Grid.Row="5" Margin="0, 10, 0, 0" Content="Return Task" HorizontalAlignment="Right" Width="200" Height="40" Click="BtnReturnTask_Click"/>
     </Grid>
 </Page>
