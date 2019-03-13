@@ -30,8 +30,6 @@ namespace Threading.Tasks.Core
         #endregion
 
         #region Public methods
-
-        #region Task
         public async void AsyncVoid()
         {
             SetStart();
