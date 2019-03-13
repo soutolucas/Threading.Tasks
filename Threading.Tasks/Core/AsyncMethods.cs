@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Threading.Tasks.Events;
 
@@ -34,6 +31,7 @@ namespace Threading.Tasks.Core
 
         #region Public methods
 
+        #region Task
         public async void AsyncVoid()
         {
             SetStart();
@@ -65,6 +63,15 @@ namespace Threading.Tasks.Core
         {
             return Task.Delay(5000);
         }
+        #endregion
+
+        #region ValueTask
+        //public ValueTask<int> A()
+        //{
+        //    var a = new ValueTask<int>();
+        //}
+        #endregion
+
         #endregion
 
         #region Private methods

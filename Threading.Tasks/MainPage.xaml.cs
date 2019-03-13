@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Threading.Tasks.Events;
+﻿using System.Threading.Tasks;
 using Threading.Tasks.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage;
+using Threading.Tasks.Events;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 namespace Threading.Tasks
 {
@@ -48,7 +34,7 @@ namespace Threading.Tasks
             //SetValueAsync().Wait();
             //txtDeadlock.Text = message;
 
-            //Solution for two cases above - [Uncomment to test]
+            //The solution for two cases above - [Uncomment to test]
             //var value = GetValueWithConfigureAwaitAsync();
             //txtDeadlock.Text = value.Result.ToString();
 
