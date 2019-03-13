@@ -65,15 +65,6 @@ namespace Threading.Tasks.Core
         }
         #endregion
 
-        #region ValueTask
-        //public ValueTask<int> A()
-        //{
-        //    var a = new ValueTask<int>();
-        //}
-        #endregion
-
-        #endregion
-
         #region Private methods
         private void SetStart([CallerMemberName] string memberName = "")
         {
@@ -86,7 +77,5 @@ namespace Threading.Tasks.Core
             OnStateEvent(_stateArgs);
         }
         #endregion
-
-
     }
 }
