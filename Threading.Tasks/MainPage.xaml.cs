@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Threading.Tasks.Core;
 using Threading.Tasks.Events;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Diagnostics;
 
 namespace Threading.Tasks
 {
@@ -47,7 +49,7 @@ namespace Threading.Tasks
         private async void BtnGetValue_Click(object sender, RoutedEventArgs e)
         {
             var value = await GetValueAsync();
-            txtWithoutDeadlock.Text = value.ToString();
+            txtWithoutDeadlock.Text = value;
         }
         #endregion
 
@@ -103,6 +105,33 @@ namespace Threading.Tasks
 
         private void UpdateStateHandler(object sender, StateEventArgs e) => txtCallAsyncTask.Text = e.State;
 
-        #endregion   
+        #endregion
+
+        #region ConfigureWait example
+        private async void BtnConfigureWait_Click(object sender, RoutedEventArgs e)
+        {
+            var currentThread = Environment.CurrentManagedThreadId;
+
+            var result = await GetValueAsync();
+
+            currentThread = Environment.CurrentManagedThreadId;
+            Debug.WriteLine($"Current thread: {currentThread}");
+
+            //With ConfigureWait
+            await SetValueAsync().ConfigureAwait(false);
+            currentThread = Environment.CurrentManagedThreadId;
+            Debug.WriteLine($"Current thread: {currentThread}");
+
+            //Without ConfigureWait
+            await SetValueAsync();
+            currentThread = Environment.CurrentManagedThreadId;
+            Debug.WriteLine($"Current thread: {currentThread}");
+
+            //System.Exception: 'The application called an interface that was marshalled for a different thread.
+            //(Exception from HRESULT: 0x8001010E (RPC_E_WRONG_THREAD))'
+            //txtConfigureWait.Text = await GetValueAsync().ConfigureAwait(false);
+        }
+
+        #endregion
     }
 }

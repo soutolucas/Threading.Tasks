@@ -21,6 +21,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <TextBlock FontSize="40" FontStyle="Italic" FontWeight="Medium" HorizontalAlignment="Center" Grid.ColumnSpan="2">System.Threading.Tasks</TextBlock>
@@ -39,5 +40,8 @@
 
         <TextBox x:Name="txtReturnTask" Grid.Row="5" Margin="0, 10, 10, 0"/>
         <Button x:Name="btnReturnTask" Grid.Column="1" Grid.Row="5" Margin="0, 10, 0, 0" Content="Return Task" HorizontalAlignment="Right" Width="200" Height="40" Click="BtnReturnTask_Click"/>
+
+        <TextBox x:Name="txtConfigureWait" Grid.Row="6" Margin="0, 10, 10, 0"/>
+        <Button x:Name="btnConfigureWait" Grid.Column="1" Grid.Row="6" Margin="0, 10, 0, 0" Content="ConfigureWait" HorizontalAlignment="Right" Width="200" Height="40" Click="BtnConfigureWait_Click"/>
     </Grid>
 </Page>

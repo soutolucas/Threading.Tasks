@@ -23,22 +23,22 @@ namespace Threading.Tasks.ConsoleApp
             
             while (true)
             {
-                time.Start();
-                await GetValueTaskAsync();
-                time.Stop();
-
-                Console.WriteLine($"ElapsedTicks using {nameof(GetValueTaskAsync)}: {time.ElapsedTicks}");
-                time.Reset();
-
                 //time.Start();
-                //await GetTaskAsync();
+                //await GetValueTaskAsync();
                 //time.Stop();
 
-                //Console.WriteLine($"ElapsedTicks using {nameof(GetTaskAsync)}: {time.ElapsedTicks}");
+                //Console.WriteLine($"ElapsedTicks using {nameof(GetValueTaskAsync)}: {time.ElapsedTicks}");
                 //time.Reset();
 
+                time.Start();
+                await GetTaskAsync();
+                time.Stop();
+
+                Console.WriteLine($"ElapsedTicks using {nameof(GetTaskAsync)}: {time.ElapsedTicks}");
+                time.Reset();
+
                 Console.WriteLine("======================================");
-                //await Task.Delay(1000);
+                await Task.Delay(1000);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Threading.Tasks.ConsoleApp
         #endregion
     }
 
-    #region Implementation flexibility
+    #region Implementation flexibility - Using ValueTask
     class WithTask : IWithTask
     {
         public Task<int> DoSomeThing()
@@ -71,7 +71,6 @@ namespace Threading.Tasks.ConsoleApp
     {
         Task<int> DoSomeThing();
     }
-
 
     class WithValueTask : IWithValueTask
     {
